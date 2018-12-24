@@ -1,0 +1,47 @@
+void startScreen() {
+  cam.beginHUD();
+  background(150, 100, 50);
+  text("Asteroid Game", width/2, height/2);
+  text("Press enter to continue", width/2, height/2+200);
+  cam.endHUD();
+}
+
+void endScreen() {
+  cam.beginHUD();
+  textSize(30);
+  background(150, 100, 50);
+  text("Game Over", width/2, height/2);
+  text("Press 'r' to restart", width/2, (height/4)*3);
+  if (keyPressed && key == 'r') {
+    ship.lives = 3;
+    ship.respawn();
+    ship.score = 0;
+    state = 1;
+  }
+  cam.endHUD();
+}
+
+void hud() {
+  cam.beginHUD();
+  textSize(15);
+  fill(50, 250, 150, 128);
+  rect(0, 0, width, 30);
+  fill(255);
+  text("" + nfc(frameRate, 2), 25, 15);
+   text("Score: " + ship.score, width - 60, 15);
+  if (ship.lives <= 0) {
+    println("Game Over");
+    state = 2;
+  }
+
+  if (ship.lives > 0) {
+    image(life, width/2 - 50, 5, 25, 25);
+  } 
+  if (ship.lives > 1) {
+    image(life, width/2-25, 5, 25, 25);
+  } 
+  if (ship.lives > 2) {
+    image(life, width/2, 5, 25, 25);
+  }
+  cam.endHUD();
+}
