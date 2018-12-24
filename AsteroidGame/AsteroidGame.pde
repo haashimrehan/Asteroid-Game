@@ -1,8 +1,8 @@
-// TODO
-// Asteroid Spawning
-// Merge init and update functions
-// Comment Code
-
+/*
+ Asteroid Game
+ Haashim Rehan
+ */
+ 
 import peasy.PeasyCam;
 import ddf.minim.*;
 
@@ -26,8 +26,8 @@ void setup() {
   size(1000, 700, P3D);
   // frameRate(50);
   smooth(8);
-  center = new PVector(width/2, height/2, 0); //For PeasyCam
- 
+  center = new PVector(width/2, height/2, 0);
+
   cam = new PeasyCam(this, width/2, height/2, 0, 600);
   cursor(CROSS);
   textSize(30);
@@ -35,8 +35,8 @@ void setup() {
   init();  
   ship.initShip();
   minim = new Minim(this);
-    bullet = minim.loadSample("bullet.mp3",512);
-    thrust = minim.loadFile("ship.mp3", 2048);
+  bullet = minim.loadSample("bullet.mp3", 512);
+  thrust = minim.loadFile("ship.mp3", 2048);
 }
 
 void init() {
@@ -45,9 +45,9 @@ void init() {
   rocket = loadShape("rocket.obj");
   model = loadShape("asteroid4.obj");
   model.setTexture(texture);
-  
+
   initBackground();
-  
+
   life = loadImage("life.png");
 
   main = new Asteroid(asteroids, 2500., model, center, new PVector(), false);
