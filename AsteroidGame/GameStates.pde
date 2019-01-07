@@ -1,4 +1,5 @@
 int state = 0;//used to determine which state the program is in; 0 = pregame, 1 = game, 2 = endgame 
+boolean paused = false;
 
 void pregame() {
   startScreen();
@@ -8,17 +9,39 @@ void pregame() {
 }
 
 void game() {
+  paused = false;
   background(0);
   noStroke();
   ship.update(); 
   cameraZoom();
   starBackground();
-  
+
   asteroids.get(0).update(center);
-  
+
   for (int i = 0; i < asteroids.size() -1; i++) {
     asteroids.get(i+1).update();
   }
+
+  hud();
+}
+
+void pauseGame() {
+  paused = true;
+
+background(0);
+
+  noStroke();
+  ship.drawShip();
+  cameraZoom();
+  starBackground();
+
+   asteroids.get(0).drawA();
+
+  for (int i = 0; i < asteroids.size() -1; i++) {
+     asteroids.get(i+1).drawA();
+   }
+   
+   pauseHUD();
 
   hud();
 }

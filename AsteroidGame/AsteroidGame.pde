@@ -2,7 +2,7 @@
  Asteroid Game
  Haashim Rehan
  */
- 
+
 import peasy.PeasyCam;
 import ddf.minim.*;
 
@@ -54,11 +54,13 @@ void init() {
 }
 
 void draw() {
-  println(ship.sPos);
+  println(paused);
   if (state == 0) {
     pregame();
   } else if (state == 1) {
     game();
+  } else if (state == 2) {
+    pauseGame();
   } else {
     endgame();
   }

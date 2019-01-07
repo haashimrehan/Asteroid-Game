@@ -166,20 +166,22 @@ class Ship {
     }
   }
 
-  void shipDriving() {
-
-    sVel.add(sAcc);
-    sPos.add(sVel);
-    sAcc.set(0, 0, 0);
-
+  void drawShip() {
     fill(255);
     pushMatrix();
     translate(sPos.x, sPos.y);
     rotate(sDir.heading());
     stroke(1);
-    //  scale(0.1);
     box(30, 10, 10);
     popMatrix();
+  }
+
+  void shipDriving() {
+    sVel.add(sAcc);
+    sPos.add(sVel);
+    sAcc.set(0, 0, 0);
+
+    drawShip();
 
     if (leftBool) { //add to rotation
       sDir.rotate(-0.3);

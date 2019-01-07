@@ -21,6 +21,14 @@ void endScreen() {
   cam.endHUD();
 }
 
+void pauseHUD() {
+  fill(255);
+  cam.beginHUD();
+  textSize(50);
+  text("Paused", width/2, height/4);
+  cam.endHUD();
+}
+
 void hud() {
   cam.beginHUD();
   textSize(15);
@@ -28,10 +36,10 @@ void hud() {
   rect(0, 0, width, 30);
   fill(255);
   text("" + nfc(frameRate, 2), 25, 15);
-   text("Score: " + ship.score, width - 60, 15);
+  text("Score: " + ship.score, width - 60, 15);
   if (ship.lives <= 0) {
     println("Game Over");
-    state = 2;
+    state = 100;
   }
 
   if (ship.lives > 0) {

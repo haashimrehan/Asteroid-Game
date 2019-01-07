@@ -16,7 +16,15 @@ void keyPressed() {
   }
 
   if (key == 'r') {
-    ship.respawn();  
+    ship.respawn();
+  }
+
+  if (key == 'p') {
+    if (paused) {
+      state = 1;
+    } else {
+      state = 2;
+    }
   }
 
   //Driving Controls
