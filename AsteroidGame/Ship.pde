@@ -32,7 +32,7 @@ class Ship {
 
   void initShip() {
     sPos = new PVector(0, 0, 0); //position of the ship
-    asteroids.add(new Asteroid(main, new PVector(random(300, 1000), random(300, 1000))));
+    new Asteroid(main, new PVector(random(300, 1000), random(300, 1000)));
 
     for (int i = 0; i < maxSize; i++) {
       posh[i] = new PVector(-1000, -1000);
@@ -104,11 +104,12 @@ class Ship {
     for (int i = 0; i < posB.size(); i++) {
       for (int j = 1; j < asteroids.size(); j++) {
         if (hitTarget(asteroids.get(j).pos, asteroids.get(j).siz*0.66, posB.get(i), bulletSize)) {
-
+          
+          explosions.add(new Explosion(posB.get(i), exSize, explosions, images, 5)); 
           asteroids.remove(j);
           posB.remove(i); 
           velB.remove(i);
-          asteroids.add(new Asteroid(main, new PVector(random(0, 1500), random(0, 1500))));
+          new Asteroid(main, new PVector(random(0, 1500), random(0, 1500)));
           score += 5;
           break;
         }

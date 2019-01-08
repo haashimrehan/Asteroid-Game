@@ -3,6 +3,9 @@
  Haashim Rehan
  */
 
+//fix lag
+//asteroids.get(0);
+
 import peasy.PeasyCam;
 import ddf.minim.*;
 
@@ -22,6 +25,11 @@ PShape rocket;
 
 Ship ship = new Ship();
 
+//Explosion
+ArrayList<Explosion> explosions = new ArrayList<Explosion>();//need this to hold all explosions
+PImage[] images = new PImage[8];//to hold the images of the explosion
+PVector mouse;
+
 void setup() {
   size(1000, 700, P3D);
   // frameRate(50);
@@ -37,8 +45,17 @@ void setup() {
   minim = new Minim(this);
   bullet = minim.loadSample("bullet.mp3", 512);
   thrust = minim.loadFile("ship.mp3", 2048);
+
+  explosionInit();
 }
 
+void explosionInit() {
+  imageMode(CENTER);
+  //loading images   
+  for (int i = 0; i < images.length; i ++) {
+    images[i] = loadImage("explosion"+i+".png");
+  }
+}
 void init() {
   center = new PVector(width/2, height/2);
   texture = loadImage("texture4.jpg");
@@ -54,7 +71,7 @@ void init() {
 }
 
 void draw() {
-  println(paused);
+
   if (state == 0) {
     pregame();
   } else if (state == 1) {

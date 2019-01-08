@@ -22,26 +22,31 @@ void game() {
     asteroids.get(i+1).update();
   }
 
+  //update explosion
+  for (int i = 0; i < explosions.size(); i++) {
+    explosions.get(i).draw();   //this is very important
+  }
+
   hud();
 }
 
 void pauseGame() {
   paused = true;
 
-background(0);
+  background(0);
 
   noStroke();
   ship.drawShip();
   cameraZoom();
   starBackground();
 
-   asteroids.get(0).drawA();
+  asteroids.get(0).drawA();
 
   for (int i = 0; i < asteroids.size() -1; i++) {
-     asteroids.get(i+1).drawA();
-   }
-   
-   pauseHUD();
+    asteroids.get(i+1).drawA();
+  }
+
+  pauseHUD();
 
   hud();
 }

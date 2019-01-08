@@ -1,7 +1,9 @@
+PVector exSize = new PVector(100, 100);//need this for how big of an explosion
+
 void mousePressed() {
   PVector mouse = new PVector(mouseX, mouseY, 0);
   if (mouseButton == LEFT) {
-    asteroids.add(new Asteroid(main, mouse));
+    new Asteroid(main, mouse);
   }
 }
 
