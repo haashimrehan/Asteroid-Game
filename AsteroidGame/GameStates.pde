@@ -8,6 +8,7 @@ void pregame() {
   }
 }
 
+
 void game() {
   paused = false;
   background(0);
