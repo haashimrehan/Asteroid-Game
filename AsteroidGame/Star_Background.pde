@@ -5,8 +5,6 @@ int mult = 1000;
 float starSize = 2;//0.5; //size of the stars
 PVector[] starPos = new PVector [maxSize]; //star positions
 
-
-
 void starBackground() {
   for (int i=1; i < maxSize; i++) {  //Background stars
     pushMatrix();

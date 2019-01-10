@@ -29,6 +29,8 @@ class Ship {
 
   int lives = 3;
   int score = 0;
+  
+  boolean laserEnb = false;
 
   void initShip() {
     sPos = new PVector(0, 0, 0); //position of the ship
@@ -73,9 +75,8 @@ class Ship {
   }
 
   PVector end = new PVector();
-  PVector start= new PVector();
+  PVector start = new PVector();
   void laser () {
-
     end = new PVector(sDir.x, sDir.y, sDir.z).mult(2000);
     start = new PVector(sPos.x, sPos.y);
     fill(255);
@@ -98,10 +99,11 @@ class Ship {
     }
   }
 
+  // returns distance between point and line
   float pointLineDist(PVector pt, PVector start, PVector end) {
     PVector closest;
 
-    float dx = end.x - start.x;
+    float dx = end.x - start.x; 
     float dy = end.y - start.y;
 
     if ((dx == 0) && (dy == 0))
@@ -254,10 +256,10 @@ class Ship {
     drawShip();
 
     if (leftBool) { //add to rotation
-      sDir.rotate(-0.3);
+      sDir.rotate(-0.1);
     }
     if (rightBool) {
-      sDir.rotate(0.3);
+      sDir.rotate(0.1);
     } 
 
     if (thrustBool) { //Increase Speed
@@ -286,6 +288,5 @@ class Ship {
     shipHitDetection();
     offEdge();
     checkRogue();
-    laser();
   }
 }

@@ -26,8 +26,11 @@ void game() {
   for (int i = 0; i < explosions.size(); i++) {
     explosions.get(i).draw();   //this is very important
   }
+  
+  if (ship.laserEnb) {
+  ship.laser();  
+  }
 
-  ship.laser();
   hud();
       
 
