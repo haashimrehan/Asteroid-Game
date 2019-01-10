@@ -1,5 +1,5 @@
 //includes ship driving, thrust animation, and stars
-
+// for laser, find distance from point and line less than radius.
 class Ship {
   int maxSize = 200;
   //variables for the ship
@@ -72,6 +72,73 @@ class Ship {
     }
   }
 
+  PVector end = new PVector();
+  PVector start= new PVector();
+  void laser () {
+
+    end = new PVector(sDir.x, sDir.y, sDir.z).mult(2000);
+    start = new PVector(sPos.x, sPos.y);
+    fill(255);
+    strokeWeight(5);
+    stroke(255);
+    line(sPos.x, sPos.y, end.x, end.y);
+    laserHitDetect(5, asteroids.get(1).mass);
+  }
+
+  void laserHitDetect(float lineThickness, float rad) {
+    for (int i = 1; i < asteroids.size(); i++) {
+      // println(pointLineDist(asteroids.get(i).pos, sPos, end));
+      if (pointLineDist(asteroids.get(i).pos, sPos, end) < lineThickness + rad) {
+
+        explosions.add(new Explosion(asteroids.get(i).pos, exSize, explosions, images, 5)); 
+        asteroids.remove(i);
+        new Asteroid(main, new PVector(random(0, 1500), random(0, 1500)));
+        score += 5;
+      }
+    }
+  }
+
+  float pointLineDist(PVector pt, PVector start, PVector end) {
+    PVector closest;
+
+    float dx = end.x - start.x;
+    float dy = end.y - start.y;
+
+    if ((dx == 0) && (dy == 0))
+    {
+      // It's a point not a line segment.
+      closest = start;
+      dx = pt.x - start.x;
+      dy = pt.y - start.y;
+      return sqrt(dx * dx + dy * dy);
+    }
+
+    // Calculate the t that minimizes the distance.
+    float t = ((pt.x - start.x) * dx + (pt.y - start.y) * dy) /
+      (dx * dx + dy * dy);
+
+    // See if this represents one of the segment's
+    // end points or a point in the middle.
+    if (t < 0)
+    {
+      closest = new PVector(start.x, start.y);
+      dx = pt.x - start.x;
+      dy = pt.y - start.y;
+    } else if (t > 1)
+    {
+      closest = new PVector(end.x, end.y);
+      dx = pt.x - end.x;
+      dy = pt.y - end.y;
+    } else
+    {
+      closest = new PVector(start.x + t * dx, start.y + t * dy);
+      dx = pt.x - closest.x;
+      dy = pt.y - closest.y;
+    }
+
+    return sqrt(dx * dx + dy * dy);
+  }
+
   void bulletControl() {
     for (int i = 0; i < posB.size(); i++) {
       PVector p = posB.get(i);
@@ -104,7 +171,7 @@ class Ship {
     for (int i = 0; i < posB.size(); i++) {
       for (int j = 1; j < asteroids.size(); j++) {
         if (hitTarget(asteroids.get(j).pos, asteroids.get(j).siz*0.66, posB.get(i), bulletSize)) {
-          
+
           explosions.add(new Explosion(posB.get(i), exSize, explosions, images, 5)); 
           asteroids.remove(j);
           posB.remove(i); 
@@ -169,6 +236,8 @@ class Ship {
 
   void drawShip() {
     fill(255);
+    strokeWeight(1);
+    stroke(1);
     pushMatrix();
     translate(sPos.x, sPos.y);
     rotate(sDir.heading());
@@ -212,9 +281,11 @@ class Ship {
     shipDriving();
     tracers();
     bulletControl();
+
     asteroidHitDetection();
     shipHitDetection();
     offEdge();
     checkRogue();
+    laser();
   }
 }

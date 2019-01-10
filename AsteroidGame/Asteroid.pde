@@ -67,6 +67,21 @@ class Asteroid {
     spin = setSpin();
     siz = setSize();
   }
+  
+    public Asteroid(Asteroid parent, float m, PVector newVel, int i) {
+    asteroids = parent.asteroids;
+    asteroids.add(this);
+    model = parent.model;
+    pos = parent.pos.copy().add(newVel.copy().mult(parent.siz));//clear it away from the parent and sibings 
+    vel = parent.vel.copy().add(newVel.copy().mult(parent.siz));//give new velocity
+    mass = m;
+    parent.pos.sub(newVel);
+    parent.vel.sub(newVel);
+    parent.mass -= mass;
+    parent.siz = parent.setSize();
+    spin = setSpin();
+    siz = setSize();
+  }
 
   public Asteroid(Asteroid main, PVector p) {
     asteroids = main.asteroids;
