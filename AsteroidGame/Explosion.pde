@@ -9,6 +9,7 @@ class Explosion {
   int currentFrame;
   int framesPerImage = 5;//speed of animation with lower numbers going faster 
 
+
 //need to call this to make an explosion
   Explosion(PVector _pos, PVector _siz, ArrayList<Explosion> _e, PImage[] _images, int _framesPerImage) {
     explosions = _e;
