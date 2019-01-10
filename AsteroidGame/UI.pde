@@ -3,6 +3,8 @@ void startScreen() {
   background(150, 100, 50);
   text("Asteroid Game", width/2, height/2);
   text("Press enter to continue", width/2, height/2+200);
+     
+
   cam.endHUD();
 }
 
@@ -31,6 +33,7 @@ void pauseHUD() {
 
 void hud() {
   cam.beginHUD();
+rectMode(CORNER);
   textSize(15);
   fill(50, 250, 150, 128);
   rect(0, 0, width, 30);
