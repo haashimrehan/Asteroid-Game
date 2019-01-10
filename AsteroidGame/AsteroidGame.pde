@@ -3,6 +3,9 @@
  Haashim Rehan
  */
 
+//fix lag
+//asteroids.get(0);
+
 import peasy.PeasyCam;
 import ddf.minim.*;
 
@@ -46,7 +49,26 @@ void setup() {
   explosionInit();
 }
 
+void explosionInit() {
+  imageMode(CENTER);
+  //loading images   
+  for (int i = 0; i < images.length; i ++) {
+    images[i] = loadImage("explosion"+i+".png");
+  }
+}
+void init() {
+  center = new PVector(width/2, height/2);
+  texture = loadImage("texture4.jpg");
+  rocket = loadShape("rocket.obj");
+  model = loadShape("asteroid4.obj");
+  model.setTexture(texture);
 
+  initBackground();
+
+  life = loadImage("life.png");
+
+  main = new Asteroid(asteroids, 2500., model, center, new PVector(), false);
+}
 
 void draw() {
 

@@ -28,10 +28,7 @@ void game() {
     explosions.get(i).draw();   //this is very important
   }
 
-  ship.laser();
   hud();
-      
-
 }
 
 void pauseGame() {
@@ -39,8 +36,9 @@ void pauseGame() {
 
   background(0);
 
-//  noStroke();
+  noStroke();
   ship.drawShip();
+  cameraZoom();
   starBackground();
 
   asteroids.get(0).drawA();
