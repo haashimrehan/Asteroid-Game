@@ -8,6 +8,22 @@ void mousePressed() {
 }
 
 void keyPressed() {
+  if (key == 'q') {
+   ship.laser = false;
+  ship.threeBullets = false;
+  ship.bullet = true;
+  }
+  if (key == 'w') {
+  ship.laser = false;
+ ship.threeBullets = true;
+  ship.bullet = false;
+  }
+  if (key == 'e') {
+   ship.laser = true;
+  ship.threeBullets = false;
+  ship.bullet = false;
+  }
+  
   if (key == ' ') {
     if (ship.bullet) {
     ship.bullet();

@@ -32,8 +32,8 @@ class Ship {
   int score = 0;
 
   boolean laser = false;
-  boolean threeBullets = true;
-  boolean bullet = false;
+  boolean threeBullets = false;
+  boolean bullet = true;
   color colour;
 
 
