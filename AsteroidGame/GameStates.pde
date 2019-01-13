@@ -40,8 +40,7 @@ void pauseGame() {
   paused = true;
 
   background(0);
-
-//  noStroke();
+  
   ship.drawShip();
   starBackground();
 

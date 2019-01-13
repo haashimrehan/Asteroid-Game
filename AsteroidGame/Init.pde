@@ -1,14 +1,24 @@
 void init() {
-  center = new PVector(width/2, height/2);
+  
+  cameraInit();
+  asteroidInit();
+  initBackground();
+  ship.initShip();
+  audioInit();
+  explosionInit();
+  imageInit();
+}
+
+void imageInit() {
+  life = loadImage("life.png");
+}
+
+void asteroidInit() {
   texture = loadImage("texture4.jpg");
   rocket = loadShape("rocket.obj");
   model = loadShape("asteroid4.obj");
   model.setTexture(texture);
-
-  initBackground();
-
-  life = loadImage("life.png");
-
+  center = new PVector(width/2, height/2, 0);
   main = new Asteroid(asteroids, 2500., model, center, new PVector(), false);
 }
 
@@ -17,6 +27,16 @@ void initBackground() {
     starPos[i] =  (PVector.random3D());
     starPos[i].mult(mult);
   }
+}
+
+void cameraInit() {
+  cam = new PeasyCam(this, width/2, height/2, 0, 600);
+}
+
+void audioInit() {
+  minim = new Minim(this);
+  bullet = minim.loadSample("bullet.mp3", 512);
+  thrust = minim.loadFile("ship.mp3", 2048);
 }
 
 void explosionInit() {

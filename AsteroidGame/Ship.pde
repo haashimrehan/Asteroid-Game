@@ -341,7 +341,7 @@ class Ship {
     checkRogue();
 
     if (doubleShot && pressed) {
-      if (millis() - ship.lastShot > 100) {
+      if (millis() - ship.lastShot > 100) { // wait 100ms and automatically shoot another bullet
         ship.posB.add(new PVector(ship.sPos.x, ship.sPos.y, ship.sPos.z));
         println("second");
         PVector v2 = new PVector(ship.sDir.x, ship.sDir.y, ship.sDir.z).mult(ship.bulletSpeed);
