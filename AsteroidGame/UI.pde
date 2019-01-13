@@ -18,7 +18,7 @@ void endScreen() {
 
   ship.scores = sort(ship.scores);
   //if score is larger than smallest score in array overwrite it
-  if (ship.scores[0] < ship.score && !checkScore) { 
+  if (ship.scores[0] < ship.score && !checkScore) {
     ship.scores[0] = ship.score;
     ship.scores = sort(ship.scores);
     checkScore = true;
@@ -53,6 +53,7 @@ void pauseHUD() {
 
 void hud() {
   cam.beginHUD();
+  strokeWeight(0);
   rectMode(CORNER);
   textSize(15);
   fill(50, 250, 150, 128);
@@ -67,10 +68,10 @@ void hud() {
 
   if (ship.lives > 0) {
     image(life, width/2 - 50, 5, 25, 25);
-  } 
+  }
   if (ship.lives > 1) {
     image(life, width/2-25, 5, 25, 25);
-  } 
+  }
   if (ship.lives > 2) {
     image(life, width/2, 5, 25, 25);
   }
