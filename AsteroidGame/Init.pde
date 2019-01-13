@@ -22,7 +22,7 @@ void initBackground() {
 void explosionInit() {
   imageMode(CENTER);
   //loading images   
-  for (int i = 0; i < images.length; i ++) {
-    images[i] = loadImage("explosion"+i+".png");
+  for (int i = 0; i < explosionImages.length; i ++) {
+    explosionImages[i] = loadImage("explosion"+i+".png");
   }
 }

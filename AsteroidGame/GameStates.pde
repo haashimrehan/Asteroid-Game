@@ -27,7 +27,7 @@ void game() {
     explosions.get(i).draw();   //this is very important
   }
   
-  if (ship.laserEnb) {
+  if (ship.laser) {
   ship.laser();  
   }
 

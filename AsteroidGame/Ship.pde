@@ -28,9 +28,18 @@ class Ship {
   float bulletSpeed = 20;
 
   int lives = 3;
+  int[] scores = new int[]{0, 5, 10, 14, 21};
   int score = 0;
-  
-  boolean laserEnb = false;
+
+  boolean laser = false;
+  boolean threeBullets = true;
+  boolean bullet = false;
+  color colour;
+
+
+  public Ship(color _colour) {
+  colour = _colour;
+  }
 
   void initShip() {
     sPos = new PVector(0, 0, 0); //position of the ship
@@ -44,6 +53,15 @@ class Ship {
 
       sizes[i] = startSize;
     }
+  }
+
+  void bullet() { 
+    //position where the bullet starts
+    ship.posB.add(new PVector(ship.sPos.x, ship.sPos.y, ship.sPos.z));
+
+    //speed and direction of bullet
+    PVector tempv = new PVector(ship.sDir.x, ship.sDir.y, ship.sDir.z).mult(ship.bulletSpeed);
+    ship.velB.add(tempv);
   }
 
   void checkRogue() {
@@ -91,7 +109,7 @@ class Ship {
       // println(pointLineDist(asteroids.get(i).pos, sPos, end));
       if (pointLineDist(asteroids.get(i).pos, sPos, end) < lineThickness + rad) {
 
-        explosions.add(new Explosion(asteroids.get(i).pos, exSize, explosions, images, 5)); 
+        explosions.add(new Explosion(asteroids.get(i).pos, exSize, explosions, explosionImages, 5)); 
         asteroids.remove(i);
         new Asteroid(main, new PVector(random(0, 1500), random(0, 1500)));
         score += 5;
@@ -141,6 +159,20 @@ class Ship {
     return sqrt(dx * dx + dy * dy);
   }
 
+  void threeBullets() {
+    for (int i = -1; i < 2; i ++) {
+      //position where the bullet starts
+      posB.add(new PVector(sPos.x, sPos.y, sPos.z));
+
+      //speed and direction of bullet
+      PVector v1 = new PVector(sDir.x, sDir.y, sDir.z).mult(ship.bulletSpeed);
+      v1.rotate(PI/.1+i*50);
+      velB.add(v1);
+    }
+
+    //  PVector v2 = new PVector(ship.sDir.x, ship.sDir.y, ship.sDir.z).mult(ship.bulletSpeed);
+  }
+
   void bulletControl() {
     for (int i = 0; i < posB.size(); i++) {
       PVector p = posB.get(i);
@@ -174,7 +206,7 @@ class Ship {
       for (int j = 1; j < asteroids.size(); j++) {
         if (hitTarget(asteroids.get(j).pos, asteroids.get(j).siz*0.66, posB.get(i), bulletSize)) {
 
-          explosions.add(new Explosion(posB.get(i), exSize, explosions, images, 5)); 
+          explosions.add(new Explosion(posB.get(i), exSize, explosions, explosionImages, 5)); 
           asteroids.remove(j);
           posB.remove(i); 
           velB.remove(i);
@@ -237,7 +269,7 @@ class Ship {
   }
 
   void drawShip() {
-    fill(255);
+    fill(colour);
     strokeWeight(1);
     stroke(1);
     pushMatrix();

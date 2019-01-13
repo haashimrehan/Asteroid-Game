@@ -20,16 +20,22 @@ PImage texture;
 PImage life;
 PShape rocket;
 
-Ship ship = new Ship();
+color colour1 = color(0, 255, 0);
+color colour2 = color(0, 0, 255);
+
+Ship ship = new Ship(colour1);
+//Ship ship2 = new Ship(colour2);
+
 
 //Explosion
 ArrayList<Explosion> explosions = new ArrayList<Explosion>();//need this to hold all explosions
-PImage[] images = new PImage[8];//to hold the images of the explosion
-PVector mouse;
+PImage[] explosionImages = new PImage[8];//to hold the images of the explosion
+
+
 
 void setup() {
   size(1000, 700, P3D);
-  // frameRate(50);
+  // frameRate(60);
   smooth(8);
   center = new PVector(width/2, height/2, 0);
 

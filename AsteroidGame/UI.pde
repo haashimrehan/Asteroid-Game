@@ -1,10 +1,10 @@
+boolean checkScore = false;
+
 void startScreen() {
   cam.beginHUD();
   background(150, 100, 50);
   text("Asteroid Game", width/2, height/2);
   text("Press enter to continue", width/2, height/2+200);
-     
-
   cam.endHUD();
 }
 
@@ -12,16 +12,36 @@ void endScreen() {
   cam.beginHUD();
   textSize(30);
   background(150, 100, 50);
-  text("Game Over", width/2, height/2);
-  text("Press 'r' to restart", width/2, (height/4)*3);
+  text("Score " + ship.score, width/2, (height/5));
+  text("Game Over", width/2, (height/5)*2);
+  text("Press 'r' to restart", width/2, (height/5)*3);
+
+  ship.scores = sort(ship.scores);
+  //if score is larger than smallest score in array overwrite it
+  if (ship.scores[0] < ship.score && !checkScore) { 
+    ship.scores[0] = ship.score;
+    ship.scores = sort(ship.scores);
+    checkScore = true;
+  }
+  ship.scores = reverse(ship.scores);
+
+  for (int i = 0; i < ship.scores.length; i++) {
+    text("" + ship.scores[i], width/2, (height/4)*3+i*30);
+  }
+
   if (keyPressed && key == 'r') {
+    checkScore = false;
     ship.lives = 3;
     ship.respawn();
     ship.score = 0;
+    for (int i = 0; i < asteroids.size(); i++) {
+      asteroids.remove(i);
+    }
     state = 1;
   }
   cam.endHUD();
 }
+
 
 void pauseHUD() {
   fill(255);
@@ -33,7 +53,7 @@ void pauseHUD() {
 
 void hud() {
   cam.beginHUD();
-rectMode(CORNER);
+  rectMode(CORNER);
   textSize(15);
   fill(50, 250, 150, 128);
   rect(0, 0, width, 30);

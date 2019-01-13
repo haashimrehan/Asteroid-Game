@@ -9,11 +9,15 @@ void mousePressed() {
 
 void keyPressed() {
   if (key == ' ') {
-    //position where the bullet starts
-    ship.posB.add(new PVector(ship.sPos.x, ship.sPos.y, ship.sPos.z));
-    //speed and direction of bullet
-    PVector tempv = new PVector(ship.sDir.x, ship.sDir.y, ship.sDir.z).mult(ship.bulletSpeed);
-    ship.velB.add(tempv);
+    if (ship.bullet) {
+    ship.bullet();
+    }
+    if (ship.laser){
+    ship.laser();
+    }
+    if (ship.threeBullets) {
+    ship.threeBullets();
+    }
     bullet.trigger(); //Play bullet Sound
   }
 
@@ -39,6 +43,17 @@ void keyPressed() {
   if (keyCode == UP) {
     ship.thrustBool = true;
   }
+/*
+ //Driving Controls
+  if (key == 'a') {
+    ship2.leftBool = true;
+  }
+  if (key == 'd') {
+    ship2.rightBool = true;
+  }
+  if (key == 'w') {
+    ship2.thrustBool = true;
+  }*/
 }
 
 void keyReleased() { //Better control for ship (multiple keys at once without confusing keys for others)
@@ -51,4 +66,15 @@ void keyReleased() { //Better control for ship (multiple keys at once without co
   if (keyCode == UP) {
     ship.thrustBool = false;
   }
+
+/*
+ if (key == 'a') {
+    ship2.leftBool = false;
+  }
+  if (key == 'd') {
+    ship2.rightBool = false;
+  }
+  if (key == 'w') {
+    ship2.thrustBool = false;
+  }*/
 }
