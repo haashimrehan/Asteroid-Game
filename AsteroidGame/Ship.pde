@@ -33,12 +33,14 @@ class Ship {
 
   boolean laser = false;
   boolean threeBullets = false;
-  boolean bullet = true;
+  boolean bullet = false;
+  boolean doubleShot = true;
+
   color colour;
 
 
   public Ship(color _colour) {
-  colour = _colour;
+    colour = _colour;
   }
 
   void initShip() {
@@ -157,6 +159,23 @@ class Ship {
     }
 
     return sqrt(dx * dx + dy * dy);
+  }
+
+
+  long lastShot;
+  boolean pressed = false;
+  void doubleShot() {
+    if (!pressed) {
+      lastShot = millis();
+      pressed = true;
+    }
+
+    //position where the bullet starts
+    posB.add(new PVector(sPos.x, sPos.y, sPos.z));
+
+    //speed and direction of bullet
+    PVector v1 = new PVector(sDir.x, sDir.y, sDir.z).mult(ship.bulletSpeed);
+    velB.add(v1);
   }
 
   void threeBullets() {
@@ -320,5 +339,15 @@ class Ship {
     shipHitDetection();
     offEdge();
     checkRogue();
+
+    if (doubleShot && pressed) {
+      if (millis() - ship.lastShot > 100) {
+        ship.posB.add(new PVector(ship.sPos.x, ship.sPos.y, ship.sPos.z));
+        println("second");
+        PVector v2 = new PVector(ship.sDir.x, ship.sDir.y, ship.sDir.z).mult(ship.bulletSpeed);
+        ship.velB.add(v2);
+        pressed =false;
+      }
+    }
   }
 }

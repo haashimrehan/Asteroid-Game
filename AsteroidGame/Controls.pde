@@ -9,30 +9,37 @@ void mousePressed() {
 
 void keyPressed() {
   if (key == 'q') {
-   ship.laser = false;
-  ship.threeBullets = false;
-  ship.bullet = true;
+    ship.laser = false;
+    ship.threeBullets = false;
+    ship.bullet = true;
   }
   if (key == 'w') {
-  ship.laser = false;
- ship.threeBullets = true;
-  ship.bullet = false;
+    ship.laser = false;
+    ship.threeBullets = true;
+    ship.bullet = false;
   }
   if (key == 'e') {
-   ship.laser = true;
-  ship.threeBullets = false;
-  ship.bullet = false;
+    ship.laser = true;
+    ship.threeBullets = false;
+    ship.bullet = false;
   }
-  
+
+
   if (key == ' ') {
     if (ship.bullet) {
-    ship.bullet();
+      ship.bullet();
     }
-    if (ship.laser){
-    ship.laser();
+    if (ship.laser) {
+      ship.laser();
     }
     if (ship.threeBullets) {
-    ship.threeBullets();
+      ship.threeBullets();
+    }     
+    if (ship.doubleShot) {
+      ship.pressed = false;
+      ship.doubleShot();
+      
+
     }
     bullet.trigger(); //Play bullet Sound
   }
@@ -59,17 +66,17 @@ void keyPressed() {
   if (keyCode == UP) {
     ship.thrustBool = true;
   }
-/*
+  /*
  //Driving Controls
-  if (key == 'a') {
-    ship2.leftBool = true;
-  }
-  if (key == 'd') {
-    ship2.rightBool = true;
-  }
-  if (key == 'w') {
-    ship2.thrustBool = true;
-  }*/
+   if (key == 'a') {
+   ship2.leftBool = true;
+   }
+   if (key == 'd') {
+   ship2.rightBool = true;
+   }
+   if (key == 'w') {
+   ship2.thrustBool = true;
+   }*/
 }
 
 void keyReleased() { //Better control for ship (multiple keys at once without confusing keys for others)
@@ -83,14 +90,14 @@ void keyReleased() { //Better control for ship (multiple keys at once without co
     ship.thrustBool = false;
   }
 
-/*
+  /*
  if (key == 'a') {
-    ship2.leftBool = false;
-  }
-  if (key == 'd') {
-    ship2.rightBool = false;
-  }
-  if (key == 'w') {
-    ship2.thrustBool = false;
-  }*/
+   ship2.leftBool = false;
+   }
+   if (key == 'd') {
+   ship2.rightBool = false;
+   }
+   if (key == 'w') {
+   ship2.thrustBool = false;
+   }*/
 }
