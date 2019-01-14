@@ -24,16 +24,10 @@ void game() {
 
   //update explosion
   for (int i = 0; i < explosions.size(); i++) {
-    explosions.get(i).draw();   //this is very important
+    explosions.get(i).draw();   
   }
   
-  if (ship.laser) {
-  ship.laser();  
-  }
-
   hud();
-      
-
 }
 
 void pauseGame() {

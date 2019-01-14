@@ -1,5 +1,5 @@
 void init() {
-  
+
   cameraInit();
   asteroidInit();
   initBackground();
@@ -7,10 +7,19 @@ void init() {
   audioInit();
   explosionInit();
   imageInit();
+  itemInit();
+}
+
+void itemInit() {
+  itemImages[0] = shield;
+  itemImages[1] = shield;
+  itemImages[2] = shield;
+  itemImages[3] = shield;
 }
 
 void imageInit() {
   life = loadImage("life.png");
+  shield = loadImage("shield.png");
 }
 
 void asteroidInit() {

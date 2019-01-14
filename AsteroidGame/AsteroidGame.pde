@@ -19,12 +19,19 @@ ArrayList<Asteroid> asteroids = new ArrayList<Asteroid>();
 PVector center;
 PShape model;
 PImage texture;
-PImage life;
 PShape rocket;
 
-//Explosions
+// Images
+PImage life;
+PImage shield;
+
+// Explosions
 ArrayList<Explosion> explosions = new ArrayList<Explosion>();//need this to hold all explosions
 PImage[] explosionImages = new PImage[8];//to hold the images of the explosion
+
+// Items
+ArrayList<Items> items = new ArrayList<Items>();// Holds all Items
+PImage[] itemImages = new PImage[4]; // Holds images for items
 
 // Ship
 color colour1 = color(0, 255, 0);

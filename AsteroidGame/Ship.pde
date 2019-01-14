@@ -59,11 +59,11 @@ class Ship {
 
   void bullet() { 
     //position where the bullet starts
-    ship.posB.add(new PVector(ship.sPos.x, ship.sPos.y, ship.sPos.z));
+    posB.add(new PVector(sPos.x, sPos.y, sPos.z));
 
     //speed and direction of bullet
-    PVector tempv = new PVector(ship.sDir.x, ship.sDir.y, ship.sDir.z).mult(ship.bulletSpeed);
-    ship.velB.add(tempv);
+    PVector tempv = new PVector(sDir.x, sDir.y, sDir.z).mult(bulletSpeed);
+    velB.add(tempv);
   }
 
   void checkRogue() {
@@ -174,7 +174,7 @@ class Ship {
     posB.add(new PVector(sPos.x, sPos.y, sPos.z));
 
     //speed and direction of bullet
-    PVector v1 = new PVector(sDir.x, sDir.y, sDir.z).mult(ship.bulletSpeed);
+    PVector v1 = new PVector(sDir.x, sDir.y, sDir.z).mult(bulletSpeed);
     velB.add(v1);
   }
 
@@ -184,12 +184,12 @@ class Ship {
       posB.add(new PVector(sPos.x, sPos.y, sPos.z));
 
       //speed and direction of bullet
-      PVector v1 = new PVector(sDir.x, sDir.y, sDir.z).mult(ship.bulletSpeed);
+      PVector v1 = new PVector(sDir.x, sDir.y, sDir.z).mult(bulletSpeed);
       v1.rotate(PI/.1+i*50);
       velB.add(v1);
     }
 
-    //  PVector v2 = new PVector(ship.sDir.x, ship.sDir.y, ship.sDir.z).mult(ship.bulletSpeed);
+    //  PVector v2 = new PVector(sDir.x, sDir.y, sDir.z).mult(bulletSpeed);
   }
 
   void bulletControl() {
@@ -341,13 +341,17 @@ class Ship {
     checkRogue();
 
     if (doubleShot && pressed) {
-      if (millis() - ship.lastShot > 100) { // wait 100ms and automatically shoot another bullet
-        ship.posB.add(new PVector(ship.sPos.x, ship.sPos.y, ship.sPos.z));
+      if (millis() - lastShot > 100) { // wait 100ms and automatically shoot another bullet
+        posB.add(new PVector(sPos.x, sPos.y, sPos.z));
         println("second");
-        PVector v2 = new PVector(ship.sDir.x, ship.sDir.y, ship.sDir.z).mult(ship.bulletSpeed);
-        ship.velB.add(v2);
+        PVector v2 = new PVector(sDir.x, sDir.y, sDir.z).mult(bulletSpeed);
+        velB.add(v2);
         pressed =false;
       }
     }
+    if (laser) {
+      laser();
+    }
+    
   }
 }
