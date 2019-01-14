@@ -102,7 +102,7 @@ class Ship {
     fill(255);
     strokeWeight(5);
     stroke(255);
-    line(sPos.x, sPos.y, end.x, end.y);
+    line(start.x, start.y, end.x, end.y);
     laserHitDetect(5, asteroids.get(1).mass);
   }
 
