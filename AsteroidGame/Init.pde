@@ -4,6 +4,7 @@ void init() {
   asteroidInit();
   initBackground();
   ship.initShip();
+  ship2.initShip();
   audioInit();
   explosionInit();
   imageInit();
@@ -44,7 +45,7 @@ void cameraInit() {
 
 void audioInit() {
   minim = new Minim(this);
-  bullet = minim.loadSample("bullet.mp3", 512);
+  bulletSound = minim.loadSample("bullet.mp3", 512);
   thrust = minim.loadFile("ship.mp3", 2048);
 }
 

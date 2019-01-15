@@ -8,48 +8,37 @@ void mousePressed() {
 }
 
 void keyPressed() {
+  /*
   if (key == 'q') {
-    ship.laser = false;
-    ship.threeBullets = false;
-    ship.bullet = true;
-    ship.doubleShot = false;
-  }
-  if (key == 'w') {
-    ship.laser = false;
-    ship.threeBullets = true;
-    ship.bullet = false;
-    ship.doubleShot = false;
-}
-  if (key == 'e') {
-    ship.laser = true;
-    ship.threeBullets = false;
-    ship.bullet = false;
-    ship.doubleShot = false;
-} if (key == 't') {
-    ship.laser = false;
-    ship.threeBullets = false;
-    ship.bullet = false;
-    ship.doubleShot = true;
-}
+   ship.laser = false;
+   ship.threeBullets = false;
+   ship.bullet = true;
+   ship.doubleShot = false;
+   }
+   if (key == 'w') {
+   ship.laser = false;
+   ship.threeBullets = true;
+   ship.bullet = false;
+   ship.doubleShot = false;
+   }
+   if (key == 'e') {
+   ship.laser = true;
+   ship.threeBullets = false;
+   ship.bullet = false;
+   ship.doubleShot = false;
+   } if (key == 't') {
+   ship.laser = false;
+   ship.threeBullets = false;
+   ship.bullet = false;
+   ship.doubleShot = true;
+   }*/
+   
+  ship.shoot();
+  ship2.shoot();
 
 
-  if (key == ' ') {
-    if (ship.bullet) {
-      ship.bullet();
-    }
-    if (ship.laser) {
-      ship.laser();
-    }
-    if (ship.threeBullets) {
-      ship.threeBullets();
-    }     
-    if (ship.doubleShot) {
-      ship.pressed = false;
-      ship.doubleShot();
-      
-
-    }
-    bullet.trigger(); //Play bullet Sound
+  if (key == 'i') {
+    state = 3;
   }
 
   if (key == 'r') {
@@ -74,17 +63,17 @@ void keyPressed() {
   if (keyCode == UP) {
     ship.thrustBool = true;
   }
-  /*
- //Driving Controls
-   if (key == 'a') {
-   ship2.leftBool = true;
-   }
-   if (key == 'd') {
-   ship2.rightBool = true;
-   }
-   if (key == 'w') {
-   ship2.thrustBool = true;
-   }*/
+
+  //Driving Controls
+  if (key == 'a') {
+    ship2.leftBool = true;
+  }
+  if (key == 'd') {
+    ship2.rightBool = true;
+  }
+  if (key == 'w') {
+    ship2.thrustBool = true;
+  }
 }
 
 void keyReleased() { //Better control for ship (multiple keys at once without confusing keys for others)
@@ -98,14 +87,14 @@ void keyReleased() { //Better control for ship (multiple keys at once without co
     ship.thrustBool = false;
   }
 
-  /*
- if (key == 'a') {
-   ship2.leftBool = false;
-   }
-   if (key == 'd') {
-   ship2.rightBool = false;
-   }
-   if (key == 'w') {
-   ship2.thrustBool = false;
-   }*/
+
+  if (key == 'a') {
+    ship2.leftBool = false;
+  }
+  if (key == 'd') {
+    ship2.rightBool = false;
+  }
+  if (key == 'w') {
+    ship2.thrustBool = false;
+  }
 }

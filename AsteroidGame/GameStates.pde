@@ -13,6 +13,7 @@ void game() {
   background(0);
   noStroke();
   ship.update(); 
+  ship2.update();
   cameraZoom();
   starBackground();
 
@@ -47,6 +48,18 @@ void pauseGame() {
   pauseHUD();
 
   hud();
+}
+
+void instructions() {
+ cam.beginHUD();
+  textSize(30);
+  background(150, 100, 50);
+
+  text("Instri", width/2, (height/5));
+  text("Game Over", width/2, (height/5)*2);
+  text("Press 'r' to restart", width/2, (height/5)*3);
+
+  cam.endHUD();
 }
 
 void endgame() {

@@ -6,11 +6,11 @@
 // Camera
 import peasy.PeasyCam;
 import ddf.minim.*;
-
-// Audio
 PeasyCam cam;
 Minim minim;
-AudioSample bullet;
+
+// Audio
+AudioSample bulletSound;
 AudioPlayer thrust;
 
 // Asteroids
@@ -36,8 +36,8 @@ PImage[] itemImages = new PImage[4]; // Holds images for items
 // Ship
 color colour1 = color(0, 255, 0);
 color colour2 = color(0, 0, 255);
-Ship ship = new Ship(colour1);
-//Ship ship2 = new Ship(colour2);
+Ship ship = new Ship(colour1, ' ');
+Ship ship2 = new Ship(colour2, 'q');
 
 void settings() {
   size(1000, 700, P3D);
@@ -60,7 +60,9 @@ void draw() {
     game();
   } else if (state == 2) {
     pauseGame();
-  } else {
+  } else if (state == 3)
+    instructions();
+  else {
     endgame();
   }
 }

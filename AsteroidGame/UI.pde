@@ -55,6 +55,7 @@ void hud() {
   cam.beginHUD();
   strokeWeight(0);
   rectMode(CORNER);
+  imageMode(CORNER);
   textSize(15);
   fill(50, 250, 150, 128);
   rect(0, 0, width, 30);

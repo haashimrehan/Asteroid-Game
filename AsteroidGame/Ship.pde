@@ -36,11 +36,14 @@ class Ship {
   boolean bullet = false;
   boolean doubleShot = true;
 
+  char shootButton;
+
   color colour;
 
 
-  public Ship(color _colour) {
+  public Ship(color _colour, char _shootButton) {
     colour = _colour;
+    shootButton = _shootButton;
   }
 
   void initShip() {
@@ -54,6 +57,25 @@ class Ship {
       acch[i] = new PVector(0, 0);
 
       sizes[i] = startSize;
+    }
+  }
+
+  void shoot() {
+    if (key == shootButton) {
+      if (bullet) {
+        bullet();
+      }
+      if (laser) {
+        laser();
+      }
+      if (threeBullets) {
+        threeBullets();
+      }     
+      if (doubleShot) {
+        pressed = false;
+        doubleShot();
+      }
+        bulletSound.trigger(); //Play bullet Sound
     }
   }
 
@@ -352,6 +374,5 @@ class Ship {
     if (laser) {
       laser();
     }
-    
   }
 }
