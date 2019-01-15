@@ -27,6 +27,7 @@ class Ship {
   float bulletSize = 5; 
   float bulletSpeed = 20;
 
+  boolean isDead = false;
   int lives = 3;
   int[] scores = new int[]{0, 5, 10, 14, 21};  //Holds all scores (initially filled with dummy data)
   int score = 0;
@@ -34,7 +35,7 @@ class Ship {
   // Different types of weapons
   boolean laser = false;
   boolean threeBullets = false;
-  boolean bullet = true;
+  boolean singleBullet = true;
   boolean doubleShot = false;
 
   char shootButton;
@@ -59,25 +60,6 @@ class Ship {
     }
   }
 
-  void shoot() {
-    if (key == shootButton) {
-      if (bullet) {
-        bullet();
-      }
-      if (laser) {
-        laser();
-      }
-      if (threeBullets) {
-        threeBullets();
-      }     
-      if (doubleShot) {
-        pressed = false;
-        doubleShot();
-      }
-      bulletSound.trigger(); //Play bullet Sound
-    }
-  }
-
   void respawn() {
     initShip();
     sPos = new PVector(width*0.75, height*0.75, 0); //position of the ship
@@ -97,7 +79,26 @@ class Ship {
       sPos.y = 1150;
     }
   }
-  
+
+  void shoot() {
+    if (key == shootButton) {
+      if (singleBullet) {
+        bullet();
+      }
+      if (laser) {
+        laser();
+      }
+      if (threeBullets) {
+        threeBullets();
+      }     
+      if (doubleShot) {
+        pressed = false;
+        doubleShot();
+      }
+      bulletSound.trigger(); //Play bullet Sound
+    }
+  }
+
   void bullet() {  // average single bullet
     //position where the bullet starts
     posB.add(new PVector(sPos.x, sPos.y, sPos.z));
@@ -106,7 +107,7 @@ class Ship {
     PVector tempv = new PVector(sDir.x, sDir.y, sDir.z).mult(bulletSpeed);
     velB.add(tempv);
   }
-  
+
   PVector end = new PVector();
   PVector start = new PVector();
   void laser () {
@@ -119,7 +120,7 @@ class Ship {
     laserHitDetect(5, asteroids.get(1).mass);
   }
 
-  void laserHitDetect(float lineThickness, float rad) {
+  void laserHitDetect(float lineThickness, float rad) {  // destroys asteroids touching laser
     for (int i = 1; i < asteroids.size(); i++) {
       // println(pointLineDist(asteroids.get(i).pos, sPos, end));
       if (pointLineDist(asteroids.get(i).pos, sPos, end) < lineThickness + rad) {
@@ -177,7 +178,7 @@ class Ship {
 
   long lastShot;
   boolean pressed = false;
-  void doubleShot() {
+  void doubleShot() { //shoots initial bullet and sets timer for next bullet to be shot
     if (!pressed) {
       lastShot = millis();
       pressed = true;
@@ -288,15 +289,12 @@ class Ship {
     for (int i = 0; i < maxSize; i++) {
       posh[i].add(velh[i]);
       fill(255, 100 - (float)i/maxSize*254., 0, 255. - (float)i/15*254.);
-      //fill(50 + (float)i/maxSize*205, 128+127*sin((float)frameCount* PI/60), 127. - cos((float)frameCount*PI/30), 255. - (float)i/maxSize*254.);
       pushMatrix();
       //potential angle of the tracers error?
       translate(cos(sDir.x)*sAcc.x, sin(sDir.y)*sAcc.y);
-
       ellipse(posh[i].x, posh[i].y, sizes[i]/3, sizes[i]/3);
 
       popMatrix();
-      //sphere(posh[i].x, posh[i].y, sizes[i]/3, sizes[i]/3);
     }
   }
 
@@ -347,13 +345,13 @@ class Ship {
     shipDriving();
     tracers();
     bulletControl();
-
     asteroidHitDetection();
     shipHitDetection();
     offEdge();
 
+    // Weapons
     if (doubleShot && pressed) {
-      if (millis() - lastShot > 100) { // wait 100ms and automatically shoot another bullet
+      if (millis() - lastShot > 100) { // wait 100ms to shoot another bullet
         posB.add(new PVector(sPos.x, sPos.y, sPos.z));
         println("second");
         PVector v2 = new PVector(sDir.x, sDir.y, sDir.z).mult(bulletSpeed);
