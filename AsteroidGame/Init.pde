@@ -12,15 +12,24 @@ void init() {
 }
 
 void itemInit() {
+  shieldItem = new Item(shield);
+  doubleBullet =new Item(shield);
+  tripleBullet =new Item(threeBullets);
+  laserItem = new Item(shield);
+  healthItem =new Item(life);
+
+  /*
   itemImages[0] = shield;
-  itemImages[1] = shield;
-  itemImages[2] = shield;
-  itemImages[3] = shield;
+   itemImages[1] = shield;
+   itemImages[2] = shield;
+   itemImages[3] = shield;
+   */
 }
 
 void imageInit() {
   life = loadImage("life.png");
   shield = loadImage("shield.png");
+  threeBullets = loadImage("threeBullets.png"); 
 }
 
 void asteroidInit() {

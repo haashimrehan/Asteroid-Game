@@ -24,13 +24,21 @@ PShape rocket;
 // Images
 PImage life;
 PImage shield;
+PImage threeBullets;
+PImage twoBullets;
 
 // Explosions
 ArrayList<Explosion> explosions = new ArrayList<Explosion>();//need this to hold all explosions
 PImage[] explosionImages = new PImage[8];//to hold the images of the explosion
 
 // Items
-ArrayList<Items> items = new ArrayList<Items>();// Holds all Items
+ArrayList<Item> items = new ArrayList<Item>();// Holds all Items
+Item shieldItem;
+Item doubleBullet;
+Item tripleBullet;
+Item laserItem;
+Item healthItem;
+
 PImage[] itemImages = new PImage[4]; // Holds images for items
 
 // Ship

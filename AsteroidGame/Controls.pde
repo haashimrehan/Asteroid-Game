@@ -5,37 +5,12 @@ void mousePressed() {
   if (mouseButton == LEFT) {
     new Asteroid(main, mouse);
   }
+
 }
 
 void keyPressed() {
-  /*
-  if (key == 'q') {
-   ship.laser = false;
-   ship.threeBullets = false;
-   ship.bullet = true;
-   ship.doubleShot = false;
-   }
-   if (key == 'w') {
-   ship.laser = false;
-   ship.threeBullets = true;
-   ship.bullet = false;
-   ship.doubleShot = false;
-   }
-   if (key == 'e') {
-   ship.laser = true;
-   ship.threeBullets = false;
-   ship.bullet = false;
-   ship.doubleShot = false;
-   } if (key == 't') {
-   ship.laser = false;
-   ship.threeBullets = false;
-   ship.bullet = false;
-   ship.doubleShot = true;
-   }*/
-   
   ship.shoot();
   ship2.shoot();
-
 
   if (key == 'i') {
     state = 3;

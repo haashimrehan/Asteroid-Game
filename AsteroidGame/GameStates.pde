@@ -1,5 +1,16 @@
 int state = 0;//used to determine which state the program is in; 0 = pregame, 1 = game, 2 = endgame 
 boolean paused = false;
+long m1 = 5000;
+
+void itemUpdate() {
+  if (millis() - m1 > 5000) {
+    //items.add(new Item(new PVector(random(-1000, 1500), random(-1000, 1500)), 40));
+    //items.add(shieldItem);
+    healthItem.newPos();    
+    items.add(healthItem);
+    m1 = millis();
+  }
+}
 
 void pregame() {
   startScreen();
@@ -17,6 +28,11 @@ void game() {
   ship2.update();
   cameraZoom();
   starBackground();
+
+  itemUpdate();
+  for (int i = 0; i< items.size(); i++) {
+    items.get(i).update();
+  }
 
   asteroids.get(0).update(center);
 

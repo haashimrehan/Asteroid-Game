@@ -309,6 +309,8 @@ class Ship {
     box(30, 10, 10);
     popMatrix();
   }
+  
+  
 
   void shipDriving() {
     sVel.add(sAcc);
