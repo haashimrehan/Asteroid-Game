@@ -22,24 +22,23 @@ class Ship {
   PVector midPoint = new PVector();
 
   //Bullets
-  ArrayList <PVector> posB = new ArrayList <PVector>();
-  ArrayList <PVector> velB = new ArrayList <PVector>();
-  float bulletSize = 5;
+  ArrayList <PVector> posB = new ArrayList <PVector>(); //Positions of Bullets
+  ArrayList <PVector> velB = new ArrayList <PVector>(); //Velocities of Bullets
+  float bulletSize = 5; 
   float bulletSpeed = 20;
 
   int lives = 3;
-  int[] scores = new int[]{0, 5, 10, 14, 21};
+  int[] scores = new int[]{0, 5, 10, 14, 21};  //Holds all scores (initially filled with dummy data)
   int score = 0;
 
+  // Different types of weapons
   boolean laser = false;
   boolean threeBullets = false;
-  boolean bullet = false;
-  boolean doubleShot = true;
+  boolean bullet = true;
+  boolean doubleShot = false;
 
   char shootButton;
-
   color colour;
-
 
   public Ship(color _colour, char _shootButton) {
     colour = _colour;
@@ -47,10 +46,10 @@ class Ship {
   }
 
   void initShip() {
-    sPos = new PVector(0, 0, 0); //position of the ship
+    sPos = new PVector(0, 0, 0); // Starting Position of ship
     new Asteroid(main, new PVector(random(300, 1000), random(300, 1000)));
 
-    for (int i = 0; i < maxSize; i++) {
+    for (int i = 0; i < maxSize; i++) { //Initiallize all arrays
       posh[i] = new PVector(-1000, -1000);
       velh[i] = PVector.random2D();
       velh[i].mult(velscale);
@@ -75,24 +74,7 @@ class Ship {
         pressed = false;
         doubleShot();
       }
-        bulletSound.trigger(); //Play bullet Sound
-    }
-  }
-
-  void bullet() { 
-    //position where the bullet starts
-    posB.add(new PVector(sPos.x, sPos.y, sPos.z));
-
-    //speed and direction of bullet
-    PVector tempv = new PVector(sDir.x, sDir.y, sDir.z).mult(bulletSpeed);
-    velB.add(tempv);
-  }
-
-  void checkRogue() {
-    for (int i = 0; i < asteroids.size(); i++) {
-      if (detect(asteroids.get(i).pos, asteroids.get(0).pos, 3000)) {
-        asteroids.remove(i);
-      }
+      bulletSound.trigger(); //Play bullet Sound
     }
   }
 
@@ -115,7 +97,16 @@ class Ship {
       sPos.y = 1150;
     }
   }
+  
+  void bullet() {  // average single bullet
+    //position where the bullet starts
+    posB.add(new PVector(sPos.x, sPos.y, sPos.z));
 
+    //speed and direction of bullet
+    PVector tempv = new PVector(sDir.x, sDir.y, sDir.z).mult(bulletSpeed);
+    velB.add(tempv);
+  }
+  
   PVector end = new PVector();
   PVector start = new PVector();
   void laser () {
@@ -360,7 +351,6 @@ class Ship {
     asteroidHitDetection();
     shipHitDetection();
     offEdge();
-    checkRogue();
 
     if (doubleShot && pressed) {
       if (millis() - lastShot > 100) { // wait 100ms and automatically shoot another bullet

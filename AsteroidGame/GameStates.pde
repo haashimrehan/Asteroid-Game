@@ -12,6 +12,7 @@ void game() {
   paused = false;
   background(0);
   noStroke();
+  checkRogue();
   ship.update(); 
   ship2.update();
   cameraZoom();
@@ -25,9 +26,9 @@ void game() {
 
   //update explosion
   for (int i = 0; i < explosions.size(); i++) {
-    explosions.get(i).draw();   
+    explosions.get(i).draw();
   }
-  
+
   hud();
 }
 
@@ -35,7 +36,7 @@ void pauseGame() {
   paused = true;
 
   background(0);
-  
+
   ship.drawShip();
   starBackground();
 
@@ -51,7 +52,7 @@ void pauseGame() {
 }
 
 void instructions() {
- cam.beginHUD();
+  cam.beginHUD();
   textSize(30);
   background(150, 100, 50);
 
