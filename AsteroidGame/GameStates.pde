@@ -49,14 +49,14 @@ void game() {
   paused = false;
   background(0);
   noStroke();
-  checkRogue();
-  ship.update(); 
+  checkRogue();  
+  ship.update();
   ship2.update();
   cameraZoom();
   starBackground();
 
   itemUpdate();
-  for (int i = 0; i< items.size(); i++) {
+  for (int i = 0; i < items.size(); i++) {
     items.get(i).update();
   }
 

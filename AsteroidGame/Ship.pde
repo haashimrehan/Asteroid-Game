@@ -38,6 +38,8 @@ class Ship {
   boolean singleBullet = true;
   boolean doubleShot = false;
 
+  boolean shield = false;
+
   char shootButton;
   color colour;
 
@@ -48,7 +50,7 @@ class Ship {
 
   void initShip() {
     sPos = new PVector(0, 0, 0); // Starting Position of ship
-    new Asteroid(main, new PVector(random(300, 1000), random(300, 1000)));
+  new Asteroid(main, new PVector(random(300, 1000), random(300, 1000)));
 
     for (int i = 0; i < maxSize; i++) { //Initiallize all arrays
       posh[i] = new PVector(-1000, -1000);
@@ -202,8 +204,6 @@ class Ship {
       v1.rotate(PI/.1+i*50);
       velB.add(v1);
     }
-
-    //  PVector v2 = new PVector(sDir.x, sDir.y, sDir.z).mult(bulletSpeed);
   }
 
   void bulletControl() {
@@ -264,8 +264,35 @@ class Ship {
   void pickUp() {
     for (int i = 0; i < items.size(); i++) { 
       if (hitTarget(sPos, 10, items.get(i).pos, items.get(i).siz)) {
+
+        if (items.get(i).health) {
+          if (lives < 3) {
+            lives++;
+          }
+        } else if (items.get(i).doubleB) {
+          // Different types of weapons
+          laser = false;
+          threeBullets = false;
+          singleBullet = false;
+          doubleShot = true;
+        } else if (items.get(i).tripleB) {
+          laser = false;
+          threeBullets = true;
+          singleBullet = false;
+          doubleShot = false;
+        } else if (items.get(i).laser) {
+          laser = true;
+          threeBullets = false;
+          singleBullet = false;
+          doubleShot = false;
+        } else if (items.get(i).shield) {
+          laser = false;
+          threeBullets = false;
+          singleBullet = true;
+          doubleShot = false;
+          shield = true;
+        }
         items.remove(i);
-   
         break;
       }
     }
@@ -319,8 +346,6 @@ class Ship {
     box(30, 10, 10);
     popMatrix();
   }
-
-
 
   void shipDriving() {
     sVel.add(sAcc);

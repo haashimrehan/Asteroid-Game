@@ -3,8 +3,13 @@ class Item {
   PVector pos;
   float siz = 50;
   PImage image;
-  long lastTime;
-  boolean checkedTime = false;
+ 
+ boolean health = false;
+ boolean doubleB = false;
+ boolean tripleB = false;
+ boolean laser = false;
+ boolean shield = false;
+ 
   public Item(PVector _pos, float _siz) {
     pos = _pos;
     // image = image;

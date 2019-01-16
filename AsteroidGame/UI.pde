@@ -1,5 +1,6 @@
 boolean checkScore = false;
 
+
 void startScreen() {
   cam.beginHUD();
   background(150, 100, 50);

@@ -26,6 +26,7 @@ PImage life;
 PImage shield;
 PImage threeBullets;
 PImage twoBullets;
+PImage laser;
 
 // Explosions
 ArrayList<Explosion> explosions = new ArrayList<Explosion>();//need this to hold all explosions
