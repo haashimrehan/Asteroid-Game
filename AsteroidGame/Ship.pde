@@ -50,7 +50,7 @@ class Ship {
 
   void initShip() {
     sPos = new PVector(0, 0, 0); // Starting Position of ship
-  new Asteroid(main, new PVector(random(300, 1000), random(300, 1000)));
+    new Asteroid(main, new PVector(random(300, 1000), random(300, 1000)));
 
     for (int i = 0; i < maxSize; i++) { //Initiallize all arrays
       posh[i] = new PVector(-1000, -1000);
@@ -203,6 +203,12 @@ class Ship {
       PVector v1 = new PVector(sDir.x, sDir.y, sDir.z).mult(bulletSpeed);
       v1.rotate(PI/.1+i*50);
       velB.add(v1);
+    }
+  }
+
+  void shield() {
+    if (shield) {
+      ellipse(sPos.x, sPos.y, 50, 50);
     }
   }
 
@@ -386,6 +392,7 @@ class Ship {
     shipHitDetection();
     offEdge();
     pickUp();
+    shield();
 
     // Weapons
     if (doubleShot && pressed) {

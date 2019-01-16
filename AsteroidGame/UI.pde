@@ -1,5 +1,11 @@
 boolean checkScore = false;
 
+boolean buttonHit(float rBorder, float lBorder, float tBorder, float bBorder) {
+  if (mouseX > rBorder && mouseX < lBorder && mouseY > bBorder && mouseY < tBorder) {
+    return true;
+  }
+  return false;
+}
 
 void startScreen() {
   cam.beginHUD();

@@ -5,17 +5,16 @@ long m1 = 5000;
 void itemUpdate() {
   if (millis() - m1 > 15000) {
 
-
     switch (int(random(0, 5))) {
     case 0: 
       healthItem.newPos();    
       items.add(healthItem);
-     println("health" + healthItem.pos);
-     break;
+      println("health" + healthItem.pos);
+      break;
     case 1: 
       shieldItem.newPos();    
       items.add(shieldItem);
-     println("shield"+shieldItem.pos);
+      println("shield"+shieldItem.pos);
       break;    
     case 2: 
       doubleBullet.newPos();    
