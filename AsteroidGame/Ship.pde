@@ -261,6 +261,16 @@ class Ship {
     }
   }
 
+  void pickUp() {
+    for (int i = 0; i < items.size(); i++) { 
+      if (hitTarget(sPos, 10, items.get(i).pos, items.get(i).siz)) {
+        items.remove(i);
+   
+        break;
+      }
+    }
+  }
+
   void tracers() {
     noStroke();
     for (int i = maxSize -1; i > 0; i--) { //Move each tracer back in array
@@ -309,8 +319,8 @@ class Ship {
     box(30, 10, 10);
     popMatrix();
   }
-  
-  
+
+
 
   void shipDriving() {
     sVel.add(sAcc);
@@ -350,6 +360,7 @@ class Ship {
     asteroidHitDetection();
     shipHitDetection();
     offEdge();
+    pickUp();
 
     // Weapons
     if (doubleShot && pressed) {

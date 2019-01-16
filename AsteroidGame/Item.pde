@@ -24,7 +24,7 @@ class Item {
   }
 
   void newPos () {
-    pos = new PVector(random(-900, 1200), random(-900, 1200));
+    pos = new PVector(random(-650, 1000), random(-900, 1000));
   }
   
   void update() {
