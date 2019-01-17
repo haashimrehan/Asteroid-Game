@@ -3,13 +3,13 @@ class Item {
   PVector pos;
   float siz = 50;
   PImage image;
- 
- boolean health = false;
- boolean doubleB = false;
- boolean tripleB = false;
- boolean laser = false;
- boolean shield = false;
- 
+
+  boolean health = false;
+  boolean doubleB = false;
+  boolean tripleB = false;
+  boolean laser = false;
+  boolean shield = false;
+
   public Item(PVector _pos, float _siz) {
     pos = _pos;
     // image = image;
@@ -23,20 +23,19 @@ class Item {
   }
 
   public Item(PImage _image) {
-    pos = new PVector(random(-1000, 1500), random(-1000, 1500));
+    pos = new PVector(random(-600, 1500), random(-450, 1150));
     image = _image;
     siz = 40;
   }
-
   void newPos () {
-    pos = new PVector(random(-650, 1000), random(-900, 1000));
+    pos = new PVector(random(-600, 1500), random(-450, 1150));
   }
-  
+
   void update() {
     fill(255);
     stroke(255);
     strokeWeight(2);
-    image(image, pos.x, pos.y,siz,siz);
+    image(image, pos.x, pos.y, siz, siz);
     //ellipse(pos.x, pos.y, siz, siz);
   }
 }

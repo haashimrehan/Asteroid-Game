@@ -63,8 +63,7 @@ class Ship {
   }
 
   void respawn() {
-    initShip();
-    sPos = new PVector(width*0.75, height*0.75, 0); //position of the ship
+    sPos = new PVector(0, 0, 0); // Starting Position of ship
     sVel = new PVector(); //velocity of the ship
     sAcc = new PVector(); //acceleration of the ship
     sDir = new PVector(0, 1, 0); //direction of the ship
@@ -119,10 +118,10 @@ class Ship {
     strokeWeight(5);
     stroke(255);
     if (keyPressed && key == shootButton) {
-    line(start.x, start.y, end.x, end.y);
-    laserHitDetect(5, asteroids.get(1).mass);
-    }  
-}
+      line(start.x, start.y, end.x, end.y);
+      laserHitDetect(5, asteroids.get(1).mass);
+    }
+  }
 
   void laserHitDetect(float lineThickness, float rad) {  // destroys asteroids touching laser
     for (int i = 1; i < asteroids.size(); i++) {
@@ -209,6 +208,9 @@ class Ship {
   }
 
   void shield() {
+    fill(0,0,0,0);
+    stroke(100,0,100);
+    strokeWeight(5);
     if (shield) {
       ellipse(sPos.x, sPos.y, 50, 50);
     }

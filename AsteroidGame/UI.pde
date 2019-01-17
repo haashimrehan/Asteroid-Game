@@ -74,7 +74,7 @@ void endScreen() {
     ship.lives = 3;
     ship.respawn();
     ship.score = 0;
-    for (int i = 0; i < asteroids.size(); i++) {
+    for (int i = 1; i < asteroids.size(); i++) {
       asteroids.remove(i);
     }
     state = 1;

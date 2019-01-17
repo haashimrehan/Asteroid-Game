@@ -63,7 +63,6 @@ void setup() {
 }
 
 void draw() {
-
   if (state == 0) {
     pregame();
   } else if (state == 1) {

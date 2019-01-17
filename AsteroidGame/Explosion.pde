@@ -3,13 +3,13 @@ class Explosion {
   ArrayList<Explosion> explosions;
   PImage[] images;
   PVector pos = new PVector();
-  PVector siz = new PVector();//using this for the height and width
+  PVector siz = new PVector(); // using this for the height and width
   float scale = 0.1;
   int count;
   int currentFrame;
-  int framesPerImage = 5;//speed of animation with lower numbers going faster 
+  int framesPerImage = 5; // speed of animation with lower numbers going faster 
 
-  //need to call this to make an explosion
+  // need to call this to make an explosion
   Explosion(PVector _pos, PVector _siz, ArrayList<Explosion> _e, PImage[] _images, int _framesPerImage) {
     explosions = _e;
     explosions.add(this);
