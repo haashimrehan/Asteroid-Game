@@ -208,8 +208,8 @@ class Ship {
   }
 
   void shield() {
-    fill(0,0,0,0);
-    stroke(100,0,100);
+    fill(0, 0, 0, 0);
+    stroke(100, 0, 100);
     strokeWeight(5);
     if (shield) {
       ellipse(sPos.x, sPos.y, 50, 50);
@@ -233,6 +233,7 @@ class Ship {
         velB.remove(v);
       }
 
+      // Adds to main asteroids mass when shot
       if (hitTarget(asteroids.get(0).pos, asteroids.get(0).mass/20, p, bulletSize)) {
         println("Hit");
         posB.remove(p); 
@@ -240,6 +241,7 @@ class Ship {
         asteroids.get(0).mass+=50;
         asteroids.get(0).siz+=10;
         score --;
+        new Asteroid(main, new PVector(random(0, 1500), random(0, 1500)));
       }
     }
   }
@@ -264,9 +266,27 @@ class Ship {
   void shipHitDetection() {
     for (int i = 0; i < asteroids.size(); i++) {
       if (hitTarget(asteroids.get(i).pos, asteroids.get(i).siz*0.7, sPos, bulletSize)) {
-        lives --;
-        respawn();
-        break;
+        if (shield) {
+          if (i == 0) { //if hit center asteroid with shield
+            respawn();
+            shield = false;
+          } else {
+            explosions.add(new Explosion(asteroids.get(i).pos, exSize, explosions, explosionImages, 5)); 
+            asteroids.remove(i);
+            shield = false;
+            break;
+          }
+        } else {
+          if (i == 0) { //if hit center asteroid with shield
+            respawn();
+          } else {
+            lives --;
+            respawn();
+            explosions.add(new Explosion(asteroids.get(i).pos, exSize, explosions, explosionImages, 5)); 
+            asteroids.remove(i);
+            break;
+          }
+        }
       }
     }
   }
