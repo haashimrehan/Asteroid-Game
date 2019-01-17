@@ -8,7 +8,7 @@ PVector[] starPos = new PVector [maxSize]; //star positions
 void starBackground() { //Populates ellipses in the background to act as stars
   for (int i=1; i < maxSize; i++) {
     pushMatrix();
-    strokeWeight(1);
+    strokeWeight(0);
     fill(255. -(float)i/maxSize*255, 255, 255);
     translate(starPos[i].x, starPos[i].y, starPos[i].z);
     ellipse(random(starSize, starSize*2), random(starSize, starSize*2), random(starSize, starSize*2), random(starSize, starSize*2));
