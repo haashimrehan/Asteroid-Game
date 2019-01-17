@@ -1,7 +1,9 @@
 boolean checkScore = false;
 
+
+// Button and mouse hit detection
 boolean buttonHit(float rBorder, float lBorder, float tBorder, float bBorder) {
-  if (mouseX > rBorder && mouseX < lBorder && mouseY > bBorder && mouseY < tBorder) {
+  if (mouseX < rBorder && mouseX > lBorder && mouseY < bBorder && mouseY > tBorder) {
     return true;
   }
   return false;
@@ -9,9 +11,40 @@ boolean buttonHit(float rBorder, float lBorder, float tBorder, float bBorder) {
 
 void startScreen() {
   cam.beginHUD();
+  rectMode(CENTER);
+  println(new PVector(mouseX, mouseY));
   background(150, 100, 50);
-  text("Asteroid Game", width/2, height/2);
+  fill(255);
+  text("Asteroid Game", width/2, height/5);
   text("Press enter to continue", width/2, height/2+200);
+
+  // Single player button
+  if (buttonHit(600, 400, 195+50, 270+ 50)) { 
+    fill(220);
+    if (mousePressed) {
+      multiplayer = false;
+      state = 1;
+    }
+  } else {
+    fill(255);
+  }
+  rect(width/2, height/3 + 50, 200, 75, 10);
+
+  // Multiplayer button
+  if (buttonHit(600, 400, 195 + 150, 270 + 150)) {  
+    fill(220);
+    if (mousePressed) {
+      multiplayer = true;
+      state = 1;
+    }
+  } else {
+    fill(255);
+  }
+  rect(width/2, height/3 + 150, 200, 75, 10);
+
+  fill(0);
+  text("Single Player", width/2, height/3 + 50);
+  text("Multiplayer", width/2, height/3 + 150);
   cam.endHUD();
 }
 
@@ -20,8 +53,8 @@ void endScreen() {
   textSize(30);
   background(150, 100, 50);
   text("Score " + ship.score, width/2, (height/5));
-  text("Game Over", width/2, (height/5)*2);
-  text("Press 'r' to restart", width/2, (height/5)*3);
+  text("Game Over", width/2, (height/5) * 2);
+  text("Press 'r' to restart", width/2, (height/5) * 3);
 
   ship.scores = sort(ship.scores);
   //if score is larger than smallest score in array overwrite it

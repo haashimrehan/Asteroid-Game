@@ -5,7 +5,6 @@ void mousePressed() {
   if (mouseButton == LEFT) {
     new Asteroid(main, mouse);
   }
-
 }
 
 void keyPressed() {
@@ -39,15 +38,17 @@ void keyPressed() {
     ship.thrustBool = true;
   }
 
-  //Driving Controls
-  if (key == 'a') {
-    ship2.leftBool = true;
-  }
-  if (key == 'd') {
-    ship2.rightBool = true;
-  }
-  if (key == 'w') {
-    ship2.thrustBool = true;
+  if (multiplayer) {
+    //Driving Controls
+    if (key == 'a') {
+      ship2.leftBool = true;
+    }
+    if (key == 'd') {
+      ship2.rightBool = true;
+    }
+    if (key == 'w') {
+      ship2.thrustBool = true;
+    }
   }
 }
 
@@ -62,14 +63,15 @@ void keyReleased() { //Better control for ship (multiple keys at once without co
     ship.thrustBool = false;
   }
 
-
-  if (key == 'a') {
-    ship2.leftBool = false;
-  }
-  if (key == 'd') {
-    ship2.rightBool = false;
-  }
-  if (key == 'w') {
-    ship2.thrustBool = false;
+  if (multiplayer) {
+    if (key == 'a') {
+      ship2.leftBool = false;
+    }
+    if (key == 'd') {
+      ship2.rightBool = false;
+    }
+    if (key == 'w') {
+      ship2.thrustBool = false;
+    }
   }
 }

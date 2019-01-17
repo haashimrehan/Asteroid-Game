@@ -43,10 +43,11 @@ Item healthItem;
 PImage[] itemImages = new PImage[4]; // Holds images for items
 
 // Ship
-color colour1 = color(0, 255, 0);
+color colour1 = color(255, 0, 0);
 color colour2 = color(0, 0, 255);
 Ship ship = new Ship(colour1, ' ');
 Ship ship2 = new Ship(colour2, 'q');
+boolean multiplayer;
 
 void settings() {
   size(1000, 700, P3D);

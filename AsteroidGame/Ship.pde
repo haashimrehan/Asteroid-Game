@@ -112,15 +112,17 @@ class Ship {
 
   PVector end = new PVector();
   PVector start = new PVector();
-  void laser () {
+  void laser () { 
     end = new PVector(sDir.x, sDir.y, sDir.z).mult(2000);
     start = new PVector(sPos.x, sPos.y);
     fill(255);
     strokeWeight(5);
     stroke(255);
+    if (keyPressed && key == shootButton) {
     line(start.x, start.y, end.x, end.y);
     laserHitDetect(5, asteroids.get(1).mass);
-  }
+    }  
+}
 
   void laserHitDetect(float lineThickness, float rad) {  // destroys asteroids touching laser
     for (int i = 1; i < asteroids.size(); i++) {
@@ -401,7 +403,7 @@ class Ship {
         println("second");
         PVector v2 = new PVector(sDir.x, sDir.y, sDir.z).mult(bulletSpeed);
         velB.add(v2);
-        pressed =false;
+        pressed = false;
       }
     }
     if (laser) {

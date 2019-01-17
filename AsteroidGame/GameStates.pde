@@ -50,7 +50,9 @@ void game() {
   noStroke();
   checkRogue();  
   ship.update();
-  ship2.update();
+  if (multiplayer) {
+    ship2.update();
+  }
   cameraZoom();
   starBackground();
 
