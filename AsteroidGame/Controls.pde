@@ -2,8 +2,10 @@ PVector exSize = new PVector(100, 100);//need this for how big of an explosion
 
 void mousePressed() {
   PVector mouse = new PVector(mouseX, mouseY, 0);
-  if (mouseButton == LEFT) {
-    new Asteroid(main, mouse);
+  if (state == 1) {
+    if (mouseButton == LEFT) {
+      new Asteroid(main, mouse);
+    }
   }
 }
 
@@ -12,7 +14,11 @@ void keyPressed() {
   ship2.shoot();
 
   if (key == 'i') {
-    state = 3;
+    if (state == 0) {
+      state = 3;
+    } else if (state == 3) {
+      state = 0;
+    }
   }
 
   if (key == 'r') {

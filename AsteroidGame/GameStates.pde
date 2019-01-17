@@ -1,41 +1,5 @@
-int state = 0;//used to determine which state the program is in; 0 = pregame, 1 = game, 2 = endgame 
+int state = 0;//used to determine which state the program is in; 0 = pregame, 1 = game, 2 = pause, 3 = instructions, 4 = endgame 
 boolean paused = false;
-long m1 = 5000;
-
-void itemUpdate() {
-  if (millis() - m1 > 15000) {
-
-    switch (int(random(0, 5))) {
-    case 0: 
-      healthItem.newPos();    
-      items.add(healthItem);
-      println("health" + healthItem.pos);
-      break;
-    case 1: 
-      shieldItem.newPos();    
-      items.add(shieldItem);
-      println("shield"+shieldItem.pos);
-      break;    
-    case 2: 
-      doubleBullet.newPos();    
-      items.add(doubleBullet);
-      println("double"+doubleBullet.pos);
-      break;    
-    case 3: 
-      tripleBullet.newPos();    
-      items.add(tripleBullet);
-      println("triple" + tripleBullet.pos);
-      break;    
-    case 4: 
-      laserItem.newPos();    
-      items.add(laserItem);
-      println("laser" + laserItem.pos);
-      break;
-    }
-
-    m1 = millis();
-  }
-}
 
 void pregame() {
   startScreen();
@@ -50,6 +14,7 @@ void game() {
   noStroke();
   checkRogue();  
   ship.update();
+  music();
   if (multiplayer) {
     ship2.update();
   }

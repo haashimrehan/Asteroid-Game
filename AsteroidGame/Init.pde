@@ -9,6 +9,7 @@ void init() {
   explosionInit();
   imageInit();
   itemInit();
+  music1.play();
 }
 
 void itemInit() {
@@ -64,6 +65,8 @@ void audioInit() {
   minim = new Minim(this);
   bulletSound = minim.loadSample("bullet.mp3", 512);
   thrust = minim.loadFile("ship.mp3", 2048);
+  music1 = minim.loadFile("Tetris.mp3", 2048);
+  music2 = minim.loadFile("Tetris2.mp3", 2048);
 }
 
 void explosionInit() {
