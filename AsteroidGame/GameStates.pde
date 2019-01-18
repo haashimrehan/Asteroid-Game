@@ -27,7 +27,6 @@ void game() {
   }
 
   asteroids.get(0).update(center);
-
   for (int i = 0; i < asteroids.size() -1; i++) {
     asteroids.get(i+1).update();
   }
@@ -42,7 +41,8 @@ void game() {
 
 void pauseGame() {
   paused = true;
-
+  music1.pause();
+  music2.pause();
   background(0);
 
   ship.drawShip();

@@ -11,6 +11,8 @@ boolean buttonHit(float rBorder, float lBorder, float tBorder, float bBorder) {
 
 void startScreen() {
   cam.beginHUD();
+  textSize(30);
+  textAlign(CENTER, CENTER);
   rectMode(CENTER);
   println(new PVector(mouseX, mouseY));
   background(150, 100, 50);
@@ -99,14 +101,14 @@ void instructions() {
   background(150, 100, 50);
   textAlign(CENTER);
   text("Welcome to the Asteroid Game! Shoot the asteroids, collect points and try out different weapons! \nBe carefull though, shooting the main asteroid will cause it to get larger \nand more mini asteroids to spawn.", width/2, 50);
- text("use arrow keys and  space for player one and wasd and 'q' for player two to move and shoot",width/2, 130);
+  text("use arrow keys and  space for player one and wasd and 'q' for player two to move and shoot", width/2, 130);
   textAlign(LEFT, CENTER);
   image(life, width/5, 200, 75, 75);
   text("Extra Life: If you have less than 3 lives left, you can pickup this item to get an extra life", width/5 + 50, 200);
   image(shield, width/5, 200 +100, 75, 75);
   text("Shield: Pickup the shield for added protection and to be sure you will not get hit by asteroids", width/5 + 50, 200+100);
   image(twoBullets, width/5, 200 +200, 75, 75);
-  text("Double Bullets: This automaticaly shoots another bullet after the first one so you can shoot more asteroids", width/5 + 50, 200+200);
+  text("Double Bullets: This automaticaly shoots another bullet after the first one so you can shoot more\nasteroids", width/5 + 50, 200+200);
   image(threeBullets, width/5, 200 +300, 75, 75);
   text("Triple Bullets: Every shot shoots two other bullets at different angles to get more asteroids", width/5 + 50, 200+300);
   image(laser, width/5, 200 +400, 75, 75);
@@ -139,5 +141,6 @@ void hud() {
   if (ship.lives > 2) {
     image(life, width/2, 5, 25, 25);
   }
+
   cam.endHUD();
 }

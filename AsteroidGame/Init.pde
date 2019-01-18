@@ -1,5 +1,4 @@
 void init() {
-
   cameraInit();
   asteroidInit();
   initBackground();
@@ -9,11 +8,9 @@ void init() {
   explosionInit();
   imageInit();
   itemInit();
-  music1.play();
 }
 
 void itemInit() {
-
   shieldItem = new Item(shield);
   doubleBullet = new Item(twoBullets);
   tripleBullet = new Item(threeBullets);
@@ -24,13 +21,6 @@ void itemInit() {
   tripleBullet.tripleB = true;
   laserItem.laser = true;
   healthItem.health = true;
-
-  /*
-  itemImages[0] = shield;
-   itemImages[1] = shield;
-   itemImages[2] = shield;
-   itemImages[3] = shield;
-   */
 }
 
 void imageInit() {
@@ -65,8 +55,11 @@ void audioInit() {
   minim = new Minim(this);
   bulletSound = minim.loadSample("bullet.mp3", 512);
   thrust = minim.loadFile("ship.mp3", 2048);
-  music1 = minim.loadFile("Tetris.mp3", 2048);
-  music2 = minim.loadFile("Tetris2.mp3", 2048);
+  for (int i = 0; i < music.length; i++) {
+    music[i] = minim.loadFile("Tetris" + (i+1) + ".mp3");
+  }
+  
+  music[0].play();
 }
 
 void explosionInit() {

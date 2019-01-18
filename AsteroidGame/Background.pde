@@ -61,17 +61,11 @@ void itemUpdate() {
   }
 }
 
-boolean musicCheck = false;
+int musicCheck;
 void music() {
-  if (music1.isPlaying() && !musicCheck) {
-    musicCheck = true;
-  } else if (!music1.isPlaying() && musicCheck) {
-    music2.play();
-    musicCheck = false;
-  } else if (music2.isPlaying() && !musicCheck) {
-    musicCheck = true;
-  } else if (!music2.isPlaying() && musicCheck) {
-    music1.play();
-    musicCheck = false;
+  // Play music sequentially
+  if (!music[musicCheck].isPlaying()) {
+    music[musicCheck = (musicCheck + 1) % 3].play();
   }
+  println (musicCheck);
 }

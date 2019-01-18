@@ -14,6 +14,7 @@ AudioSample bulletSound;
 AudioPlayer thrust;
 AudioPlayer music1;
 AudioPlayer music2;
+AudioPlayer[] music = new AudioPlayer[3];
 
 // Asteroids
 Asteroid main;
@@ -65,7 +66,6 @@ void setup() {
 }
 
 void draw() {
-  println(new PVector(mouseX,mouseY));
   if (state == 0) {
     pregame();
   } else if (state == 1) {
