@@ -19,3 +19,8 @@ This is my summative project for the ICS3U course at CKSS.
 - Multiplayer 
   - Local Multiplayer
 - Magical items of an impressive quality
+
+# Extra Features
+- Items Class to spawn and easily create new items
+- 'Off Edge' so ship does not go to far away from screen and instead teleports to other side
+- Camera Zooming when moving closer or ffar away from main asteroid
